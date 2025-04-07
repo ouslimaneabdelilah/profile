@@ -55,7 +55,7 @@ return [
     | providers to represent the model / table. These providers may then
     | be assigned to any extra authentication guards you have defined.
     |
-    | Supported: "database", "eloquenttt"
+    | Supported: "database", "eloquen"
     |
     */
 
