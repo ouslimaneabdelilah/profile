@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource hhhhhhhhhh.
      */
     public function register(Request $request){
         $request->validate([
@@ -33,8 +33,11 @@ class UserController extends Controller
             'email'=>'required|string|email',
             'password'=>'required|string'
         ]);
-        $credentials = ['email'=>$request->email,"password"=>$request->password];
-        if(Auth::attempt($credentials)){
+        
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['message' => 'Email or password invalid'], 401);
+        }
+    
         $user = User::where('email', $request->email)->firstOrFail();
         $token = $user->createToken("auth_token")->plainTextToken;
     
@@ -42,10 +45,7 @@ class UserController extends Controller
             'message'=>'user Login success',
             'User' =>$user,
             'remember_token' =>$token
-        ], 201);}
-        else{
-            return response()->json(['message' => 'Email or password invalid'], 401);
-        }
+        ], 201);
     }
     
 
