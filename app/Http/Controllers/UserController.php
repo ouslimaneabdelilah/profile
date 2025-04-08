@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource hhhhhhhhhh.
+     * Display a listing of the resource.
      */
     public function register(Request $request){
         $request->validate([
